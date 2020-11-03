@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ToDoItemApi.Models;
+using ToDoItemApi.Services;
 
 namespace ToDoItemApi
 {
@@ -22,6 +23,9 @@ namespace ToDoItemApi
         {
             services.AddControllers();
             services.AddSwaggerGen();
+
+            // add local service
+            services.AddSingleton<ToDoItemDb>();
 
             // add service about database connection
             services.AddDbContext<ToDoItemContext>(opt => opt.UseInMemoryDatabase("TodoList"));
